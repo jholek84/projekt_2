@@ -43,8 +43,10 @@ def get_bulls_and_cows(secret: str, guess: str) -> tuple[int,  int]:
   cows = 0
 
   for index in range(4):
+  # správné číslo na správné pozici
     if guess[index] == secret[index]:
       bulls += 1
+  # správné číslo na špatné pozici
     elif guess[index] in secret:
       cows += 1
 
@@ -58,13 +60,15 @@ def maine_game_circle(secret_number: str) -> int:
       is_valid, message = validate_guess(guess)
       if not is_valid:
         print(f"Incorrect tip! Try it again!")
-        continue
+        continue # pokračujeme na další pokus
 
       attempts += 1
 
       if guess == secret_number:
         return attempts
-
+        
+  # byl uhodnut správný výsledek, budou sečteny pokusy a vypsána gratuleace
+    
       bulls, cows = get_bulls_and_cows(secret_number, guess)
 
       bulls_out = get_correct_form(bulls, "bull", "bulls")
